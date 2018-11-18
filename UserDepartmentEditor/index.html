@@ -31,7 +31,7 @@
 						<tr>
 							<th scope="row" data-bind="text: Id"></th>
 							<td data-bind="text: Username"></td>
-							<td data-bind="text: Department"></td>
+							<td data-bind="text: Department, 'attr': { 'department-id': DepartmentId }"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -43,22 +43,21 @@
 			<h5 class="card-header" id="card-header-user">Add / Edit User</h5>
 			<div class="card-body text-center">
 
-				<div class="input-group col-3 mx-auto mb-2">
-					<div class="input-group-prepend">
-						<span class="input-group-text octicon octicon-person" id="user-icon" />
-					</div>
-					<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="user-icon">
-				</div>
-				<div class="dropdown mb-2">
-					<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Department
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenuDepartment">
-						<a class="dropdown-item">Action</a>
-						<a class="dropdown-item">Another action</a>
-						<a class="dropdown-item">Something else here</a>
-					</div>
-				</div>
+                <div class="input-group col-3 mx-auto mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text octicon octicon-person" id="user-icon" />
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="user-icon" id="enter-username" data-bind="value: user() && user().Username">
+                    <!--<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="user-icon" id="enter-username">-->
+                </div>
+                <div class="dropdown mb-2">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            data-bind="text: user() && user().Department ? user() && user().Department : 'Department', 'attr': { 'department-id': user() && user().DepartmentId ? user() && user().DepartmentId : '' }" />
+                    <!--<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>-->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenuDepartment" data-bind="foreach: departments">
+                        <a class="dropdown-item" department-id="" data-bind="text: Title, 'attr': { 'department-id': Id }"></a>
+                    </div>
+                </div>
 				<div class="btn btn-light" id="user-action" action="">Action</div>
 			</div>
 		</div>

@@ -29,8 +29,9 @@ namespace UserDepartmentEditor.Controllers
                     {
                         Id = u.Id,
                         Username = u.UserName,
-                        Department = d.Title
-                    }
+                        Department = d.Title,
+                        DepartmentId = d.Id
+                }
                 );
             return users;
         }
@@ -48,7 +49,8 @@ namespace UserDepartmentEditor.Controllers
                     {
                         Id = u.Id,
                         Username = u.UserName,
-                        Department = d.Title
+                        Department = d.Title,
+                        DepartmentId = d.Id
                     }
                 ).SingleOrDefaultAsync(u => u.Id == id);
             if (user == null)
